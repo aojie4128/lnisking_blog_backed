@@ -1,0 +1,8 @@
+blog:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: 107.148.31.241
+    port: 3303
+    database: lnisking_blog
+    username: root
+    password: lnisking

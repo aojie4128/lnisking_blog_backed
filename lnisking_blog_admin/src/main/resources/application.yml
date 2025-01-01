@@ -1,0 +1,43 @@
+server:
+  port: 12000
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: ${blog.datasource.driver-class-name}
+    url: jdbc:mysql://${blog.datasource.host}:${blog.datasource.port}/${blog.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${blog.datasource.username}
+    password: ${blog.datasource.password}
+    type: com.alibaba.druid.pool.DruidDataSource
+
+# jwt相关配置
+blog:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    admin-secret-key: lnisking
+    # 设置jwt过期时间
+    admin-ttl: 7200000
+    # 设置前端传递过来的令牌名称
+    admin-token-name: Authorization
+
+# 策略相关配置
+strategy:
+  # 上传策略
+  upload:
+    # 上传策略 oss /....
+    mode: minio
+    # oss配置，秘钥等都配置在本机的环境变量中，具体参考官网
+#    oss:
+#      # 这里的前缀，后面必须加上 /
+#      preUrl: https://ajiege-blog.oss-cn-nanjing.aliyuncs.com/
+#      endpoint: oss-cn-nanjing.aliyuncs.com
+#      bucketName: ajiege-blog
+    minio:
+      preUrl: https://ajiege-blog.oss-cn-nanjing.aliyuncs.com/
+      endpoint: oss-cn-nanjing.aliyuncs.com
+      bucketName: blog
+  # 搜索策略
+  search:
+    # 搜索策略 mysql / es / ....
+    mode: mysql
